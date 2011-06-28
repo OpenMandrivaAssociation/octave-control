@@ -14,7 +14,7 @@ Url:		http://octave.sourceforge.net/control/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Conflicts:	octave-forge <= 20090607
 Requires:	octave >= 3.3.90
-BuildRequires:	octave-devel >= 3.3.90
+BuildRequires:	octave-devel >= 3.3.90, MesaGL-devel, MesaGLU-devel
 BuildArch:	noarch
 
 %description
