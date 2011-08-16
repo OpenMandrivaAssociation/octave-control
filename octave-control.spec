@@ -1,6 +1,6 @@
 %define	pkgname control
 %define name	octave-%{pkgname}
-%define version 2.0.2
+%define version 2.1.53
 %define release %mkrel 1
 
 Summary:	Additional Octave control tools
@@ -31,8 +31,8 @@ export OCT_PREFIX=%{buildroot}%{_datadir}/octave/packages
 octave -q --eval "pkg prefix $OCT_PREFIX; pkg install -verbose -nodeps -local %{pkgname}-%{version}.tar.gz"
 
 tar zxf %SOURCE0 
-mv %{pkgname}-%{version}/COPYING .
-mv %{pkgname}-%{version}/DESCRIPTION .
+mv %{pkgname}/COPYING .
+mv %{pkgname}/DESCRIPTION .
 
 %clean
 %__rm -rf %{buildroot}
