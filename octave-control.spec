@@ -1,7 +1,12 @@
 %define	pkgname control
 %define name	octave-%{pkgname}
-%define version 2.1.53
-%define release %mkrel 1
+%define version 2.3.52
+%define	rel		1
+%if %mdkversion < 201100
+%define release %mkrel %{rel}
+%else
+%define	release	%{rel}
+%endif
 
 Summary:	Additional Octave control tools
 Name:		%{name}
@@ -13,8 +18,8 @@ Group:		Sciences/Mathematics
 Url:		http://octave.sourceforge.net/control/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Conflicts:	octave-forge <= 20090607
-Requires:	octave >= 3.3.90
-BuildRequires:	octave-devel >= 3.3.90, MesaGL-devel, MesaGLU-devel
+Requires:	octave >= 3.6.0
+BuildRequires:	octave-devel >= 3.6.0, MesaGL-devel, MesaGLU-devel
 BuildArch:	noarch
 
 %description
