@@ -1,55 +1,53 @@
-%define	pkgname control
-%define name	octave-%{pkgname}
-%define version 2.3.52
-%define	rel		1
-%if %mdkversion < 201100
-%define release %mkrel %{rel}
-%else
-%define	release	%{rel}
-%endif
+%define octpkg control
+
+# Exclude .oct files from provides
+%define __provides_exclude_from ^%{octpkglibdir}/.*.oct$
 
 Summary:	Additional Octave control tools
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Source0:	%{pkgname}-%{version}.tar.gz
-License:	GPLv2+
+Name:		octave-%{octpkg}
+Version:	3.0.0
+Release:	1
+Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		http://octave.sourceforge.net/control/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Conflicts:	octave-forge <= 20090607
-Requires:	octave >= 3.6.0
-BuildRequires:	octave-devel >= 3.6.0, mesagl-devel, mesaglu-devel
-BuildArch:	noarch
+Url:		https://octave.sourceforge.io/%{octpkg}/
+
+BuildRequires:	octave-devel >= 3.8.0
+
+Requires:	octave(api) = %{octave_api}
+
+Requires(post): octave
+Requires(postun): octave
 
 %description
-Additional Octave control tools.
+Computer-Aided Control System Design (CACSD) Tools for GNU Octave,
+based on the proven SLICOT Library.
+
+This package is part of community Octave-Forge collection.
 
 %prep
-%setup -q -c %{pkgname}-%{version}
-cp %SOURCE0 .
+%setup -qcT
+
+%build
+%octave_pkg_build -T
 
 %install
-rm -rf %{buildroot}
-%__install -m 755 -d %{buildroot}%{_datadir}/octave/packages/
-export OCT_PREFIX=%{buildroot}%{_datadir}/octave/packages
-octave -q --eval "pkg prefix $OCT_PREFIX; pkg install -verbose -nodeps -local %{pkgname}-%{version}.tar.gz"
-
-tar zxf %SOURCE0 
-mv %{pkgname}/COPYING .
-mv %{pkgname}/DESCRIPTION .
-
-%clean
-%__rm -rf %{buildroot}
+%octave_pkg_install
 
 %post
-%{_bindir}/test -x %{_bindir}/octave && %{_bindir}/octave -q -H --no-site-file --eval "pkg('rebuild');" || :
+%octave_cmd pkg rebuild
+
+%preun
+%octave_pkg_preun
 
 %postun
-%{_bindir}/test -x %{_bindir}/octave && %{_bindir}/octave -q -H --no-site-file --eval "pkg('rebuild');" || :
+%octave_cmd pkg rebuild
 
 %files
-%defattr(-,root,root)
-%doc COPYING DESCRIPTION
-%{_datadir}/octave/packages/%{pkgname}-%{version}
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+%dir %{octpkgdir}
+%{octpkgdir}/*
+%doc %{octpkg}-%{version}/NEWS
+%doc %{octpkg}-%{version}/COPYING
 
