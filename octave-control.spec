@@ -4,7 +4,7 @@ Summary:	Additional Octave control tools
 Name:		octave-%{octpkg}
 Version:	3.4.0
 Release:	1
-Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 # https://savannah.gnu.org/bugs/?61205
 Patch0:		lapack-3.10.0.patch
 License:	GPLv3+
@@ -13,6 +13,7 @@ Url:		https://octave.sourceforge.io/%{octpkg}/
 
 BuildRequires:	octave-devel >= 4.0.0
 BuildRequires:	gcc-gfortran
+BuildRequires:	gomp-devel
 
 Requires:	octave(api) = %{octave_api}
 
