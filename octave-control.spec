@@ -9,7 +9,7 @@ Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 Patch0:		lapack-3.10.0.patch
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://octave.sourceforge.io/%{octpkg}/
+Url:		https://packages.octave.org/%{octpkg}/
 
 BuildRequires:	octave-devel >= 4.0.0
 BuildRequires:	gcc-gfortran
@@ -23,8 +23,6 @@ Requires(postun): octave
 %description
 Computer-Aided Control System Design (CACSD) Tools for GNU Octave,
 based on the proven SLICOT Library.
-
-This package is part of community Octave-Forge collection.
 
 %files
 %license COPYING
