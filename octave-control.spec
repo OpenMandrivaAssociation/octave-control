@@ -1,17 +1,18 @@
 %global octpkg control
 
 Summary:	Additional Octave control tools
-Name:		octave-%{octpkg}
-Version:	3.4.0
+Name:		octave-control
+Version:	3.5.1
 Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
-# https://savannah.gnu.org/bugs/?61205
-Patch0:		lapack-3.10.0.patch
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://packages.octave.org/%{octpkg}/
+#Url:		https://packages.octave.org/control/
+Url:		https://github.com/gnu-octave/pkg-control
+Source0:	https://github.com/gnu-octave/pkg-control/releases/download/control-%{version}/control-%{version}.tar.gz
+# https://savannah.gnu.org/bugs/?61205
+#Patch0:		lapack-3.10.0.patch
 
-BuildRequires:	octave-devel >= 4.0.0
+BuildRequires:  octave-devel >= 4.0.0
 BuildRequires:	gcc-gfortran
 BuildRequires:	gomp-devel
 
@@ -21,29 +22,27 @@ Requires(post): octave
 Requires(postun): octave
 
 %description
-Computer-Aided Control System Design (CACSD) Tools for GNU Octave,
+Computer-Aided Control System Design (CACSD) Tools for GNU Octave, 
 based on the proven SLICOT Library.
 
 %files
 %license COPYING
 %doc NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
 
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
 
-# remove backup files
-find . -name \*~ -delete
-
 %build
 # fortran modules don't link if clang is used
 export CC=gcc
 export CXX=g++
+
 %set_build_flags
 %octave_pkg_build
 
