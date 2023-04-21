@@ -2,15 +2,13 @@
 
 Summary:	Additional Octave control tools
 Name:		octave-control
-Version:	3.5.1
+Version:	3.5.2
 Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/control/
 Url:		https://github.com/gnu-octave/pkg-control
 Source0:	https://github.com/gnu-octave/pkg-control/releases/download/control-%{version}/control-%{version}.tar.gz
-# https://savannah.gnu.org/bugs/?61205
-#Patch0:		lapack-3.10.0.patch
 
 BuildRequires:  octave-devel >= 4.0.0
 BuildRequires:	gcc-gfortran
