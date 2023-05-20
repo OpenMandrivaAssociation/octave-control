@@ -9,6 +9,7 @@ Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/control/
 Url:		https://github.com/gnu-octave/pkg-control
 Source0:	https://github.com/gnu-octave/pkg-control/releases/download/control-%{version}/control-%{version}.tar.gz
+Patch0:		octave-control-3.6.0_fix_metainfo.patch
 
 BuildRequires:  octave-devel >= 4.0.0
 BuildRequires:	gcc-gfortran
@@ -30,6 +31,7 @@ based on the proven SLICOT Library.
 %{octpkgdir}/*
 %dir %{octpkglibdir}
 %{octpkglibdir}/*
+%{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
