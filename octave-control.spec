@@ -2,7 +2,7 @@
 
 Summary:	Additional Octave control tools
 Name:		octave-control
-Version:	3.5.2
+Version:	3.6.0
 Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
