@@ -9,15 +9,14 @@
 
 Summary:	Additional Octave control tools
 Name:		octave-control
-Version:	4.1.0
+Version:	4.1.1
 Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/control/
 Url:		https://github.com/gnu-octave/pkg-control
 Source0:	https://github.com/gnu-octave/pkg-control/releases/download/control-%{version}/control-%{version}.tar.gz
-Patch0:		of-control-2-octave-9-compat.patch
-# (debian)
+# (adapted from debian)
 %if %{with use_external_slicot}
 Patch10:	use-external-slicot.patch
 %endif

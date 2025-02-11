@@ -1,0 +1,32 @@
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -44,27 +44,10 @@ $(SC_SRC)/MA02ID.f:
+ 
+ # TODO: Private oct-files for control package.
+ 
+-# Compile SLICOT library
+-#
+-# Compile: $(SC_SRC)/*.f   (SLICOT files)
+-#          ./TG04BX.f      own derived file
+-#          $(SRC_AUX)/*.f  external sources like deprecated
+-#                          LAPACK files
+-#
+-# MA02ID.f is compiled by an extra command
+-# suppressing warnings on indexing errors
+-#
+-slicotlibrary.a: slicot $(SC_SRC)/MA02ID.f
+-	cd $(SC_SRC) && \
+-	  $(MKOCTFILE) -w -c MA02ID.f; mv MA02ID.f x && \
+-		$(MKOCTFILE) -c *.f $(SRC)/TG04BX.f $(SRC_AUX)/*.f && \
+-		mv x MA02ID.f
+-	$(AR) -rc slicotlibrary.a $(SC_SRC)/*.o
+-
+ # slicot functions
+-__control_slicot_functions__.oct: __control_slicot_functions__.cc common.cc slicotlibrary.a
++__control_slicot_functions__.oct: __control_slicot_functions__.cc common.cc TG04BX.f
+ 	LDFLAGS="$(LDFLAGS)" \
+-    $(MKOCTFILE) $(PKG_CXXFLAGS) __control_slicot_functions__.cc common.cc slicotlibrary.a
++    $(MKOCTFILE) $(PKG_CXXFLAGS) __control_slicot_functions__.cc common.cc TG04BX.f -lslicot
+ 
+ # helper functions
+ __control_helper_functions__.oct: __control_helper_functions__.cc
