@@ -10,7 +10,7 @@
 Summary:	Additional Octave control tools
 Name:		octave-control
 Version:	4.1.1
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/control/
