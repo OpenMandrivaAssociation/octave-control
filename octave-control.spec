@@ -9,7 +9,7 @@
 
 Summary:	Additional Octave control tools
 Name:		octave-control
-Version:	4.1.2
+Version:	4.2.2
 Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
@@ -48,7 +48,7 @@ based on the proven SLICOT Library.
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{octpkg}-%{version}
+%autosetup -p1 -n control-4.2.2
 
 # remove external libs
 %if %{with use_external_slicot}
